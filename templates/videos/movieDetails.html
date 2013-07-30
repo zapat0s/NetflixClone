@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>NetflixClone {% movie.title %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
+		<link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+		<script src="http://vjs.zencdn.net/4.1/video.js"></script>
+  	</head>
+  	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="container">
+				<a href="index.html" class="navbar-brand">NetFlixClone</a>
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="index.html">Movies</a>
+					</li>
+					<li>
+						<a href="index.html">TV Shows</a>
+					</li>
+			</div>
+		</div>
+		<div class="container">
+			<h1>ShowName Episode #: EpisodeTitle</h1>
+			<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1170" height="500" poster="http://video-js.zencoder.com/oceans-clip.png" data-setup='{"example_option":true}'>
+				<source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+				<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+				<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+			</video>
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="row">
+						<div class="col-lg-3">
+							<strong>Duration:</strong> 88:88
+						</div>
+						<div class="col-lg-6">
+							<strong>Rating:</strong> NR
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-9">
+							<strong>Air Date:</strong> January 1 1966
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<p>The description goes here. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4"><img src="http://upload.wikimedia.org/wikipedia/en/a/a7/Batman_Lee.png"></div>
+			</div>
+		</div>
+	<!-- JavaScript plugins (requires jQuery) -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	</body>
+</html>
