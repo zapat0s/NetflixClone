@@ -26,16 +26,14 @@
 		</div>
 		<div class="container">
 			<h1>{{ movie.title }}</h1>
-			<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1170" height="500" poster="http://video-js.zencoder.com/oceans-clip.png" data-setup='{"example_option":true}'>
-				<source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-				<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-				<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+			<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1170" height="500" data-setup='{"example_option":true}'>
+			<source src="{{ movie.video.uri }}" type='{{ movie.video.type }}' />
 			</video>
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="row">
 						<div class="col-lg-3">
-							<strong>Duration:</strong> 88:88
+							<strong>Duration:</strong> {{ movie.video.duration|time:"H:i:s" }}
 						</div>
 						<div class="col-lg-6">
 							<strong>Rating:</strong> {{ movie.rating }}
@@ -52,7 +50,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4"><img src="http://upload.wikimedia.org/wikipedia/en/a/a7/Batman_Lee.png"></div>
+				<div class="col-lg-4"><img src="{{ movie.cover }}"></div>
 			</div>
 		</div>
 	<!-- JavaScript plugins (requires jQuery) -->

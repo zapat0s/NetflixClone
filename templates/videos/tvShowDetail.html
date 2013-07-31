@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>NetflixClone {{ tvshow.title }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
+		<style>
+			body {padding-top: 50px;}
+		</style>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="container">
+				<a href="{% url 'videos:index' %}" class="navbar-brand">NetflixClone</a>
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="{% url 'videos:movieList' %}">Movies</a>
+					</li>
+					<li class="active">
+						<a href="{% url 'videos:tvShowList' %}">TV Shows</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<h1>{{ tvshow.title }}</h1>
+			<div class="row">
+				<div class="col-12 col-sm-8 col-lg-6">
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<strong>Start Date:</strong> {{ tvshow.startDate }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<strong>End Date:</strong> {{ tvshow.endDate }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<p>{{ tvshow.description }}</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="show-ep">Episode</th>
+										<th class="show-sn">Season</th>
+										<th>Title</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for episode in tvshow.episode_set.all %}
+									<tr>
+										<td class="show-ep"><a href="{% url 'videos:episodeDetail' tvshow.id episode.id %}">{{ episode.epNum }}</a></td>
+										<td class="show-sn"><a href="{% url 'videos:episodeDetail' tvshow.id episode.id %}">{{ episode.season }}</a></td>
+										<td><a href="{% url 'videos:episodeDetail' tvshow.id episode.epNum %}">{{ episode.title }}</a></td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-lg-6">
+					<img src="{{ tvshow.cover }}">
+				</div>
+			</div>
+		</div>
+		<!-- JavaScript plugins (requires jQuery) -->
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	</body>
+</html>

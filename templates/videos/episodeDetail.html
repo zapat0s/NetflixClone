@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>NetflixClone {% movie.title %}</title>
+		<title>NetflixClone {{ episode.tvShow.title }} season {{ episode.season }} episode {{ episode.epNum }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
 		<link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet">
+		<style>
+			body {padding-top: 50px;}
+		</style>
 		<script src="http://vjs.zencdn.net/4.1/video.js"></script>
   	</head>
   	<body>
 		<div class="navbar navbar-fixed-top">
 			<div class="container">
-				<a href="index.html" class="navbar-brand">NetFlixClone</a>
+				<a href="{% url 'videos:index' %}" class="navbar-brand">NetflixClone</a>
 				<ul class="nav navbar-nav">
 					<li class="active">
-						<a href="index.html">Movies</a>
+						<a href="{% url 'videos:movieList' %}">Movies</a>
 					</li>
 					<li>
-						<a href="index.html">TV Shows</a>
+						<a href="{% url 'videos:tvShowList' %}">TV Shows</a>
 					</li>
 			</div>
 		</div>
 		<div class="container">
-			<h1>ShowName Episode #: EpisodeTitle</h1>
-			<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1170" height="500" poster="http://video-js.zencoder.com/oceans-clip.png" data-setup='{"example_option":true}'>
-				<source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-				<source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-				<source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+			<h1>{{ episode.tvShow.title }} season {{ episode.season }} episode {{ episode.epNum }}: {{ episode.title }}</h1>
+			<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="1170" height="500" data-setup='{"example_option":true}'>
+			<source src="{{ episode.video.uri }}" type='{{ episode.video.typei }}' />
 			</video>
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="row">
 						<div class="col-lg-3">
-							<strong>Duration:</strong> 88:88
+							<strong>Duration:</strong>{{ episode.video.duration|time:"H:i:s" }}
 						</div>
 						<div class="col-lg-6">
-							<strong>Rating:</strong> NR
+							<strong>Rating:</strong> {{ episode.rating }}
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-9">
-							<strong>Air Date:</strong> January 1 1966
+							<strong>Air Date:</strong> {{ episode.date }}
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-3">
-							<p>The description goes here. </p>
+						<div class="col-lg-12">
+							<p>{{ episode.description }}</p>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4"><img src="http://upload.wikimedia.org/wikipedia/en/a/a7/Batman_Lee.png"></div>
+				<div class="col-lg-4"><img src="{{ episode.tvShow.cover }}"></div>
 			</div>
 		</div>
 	<!-- JavaScript plugins (requires jQuery) -->

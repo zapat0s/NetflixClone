@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<title>NetFlixClone TV Shows</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
-	<link href="style.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="navbar navbar-fixed-top">
+	<head>
+		<title>NetflixClone TV Shows</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
+		<style>
+			body {padding-top: 50px;}
+		</style>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="container">
+				<a href="{% url 'videos:index' %}" class="navbar-brand">NetflixClone</a>
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="{% url 'videos:movieList' %}">Movies</a>
+					</li>
+					<li class="active">
+						<a href="{% url 'videos:tvShowList' %}">TV Shows</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<div class="container">
-			<a href="index.html" class="navbar-brand">NetFlixClone</a>
-			<ul class="nav navbar-nav">
-				<li>
-					<a href="index.html">Movies</a>
-				</li>
-				<li class="active">
-					<a href="index.html">TV Shows</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="container">
-	{% if tvshow_list %}
-		<div class="row">
-		{% for show in tvshow_list %}
-			<div class="col-sm-2"><img height="300" width="187" src="http://upload.wikimedia.org/wikipedia/en/a/a7/Batman_Lee.png"></div>
-		{% endfor %}
-		</div>
-	{% else %}
-		<p>No TV shows are available.</p>
-	{% endif %}
-    <!-- JavaScript plugins (requires jQuery) -->
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
-  </body>
+		{% if tvshow_list %}
+			<div class="row">
+			{% for tvshow in tvshow_list %}
+			<div class="col-sm-2"><a href="{% url 'videos:tvShowDetail' tvshow.id %}"><img height="300" width="187" src="{{ tvshow.cover }}"></a></div>
+			{% endfor %}
+			</div>
+		{% else %}
+			<p>No TV shows are available.</p>
+		{% endif %}
+	<!-- JavaScript plugins (requires jQuery) -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	</body>
 </html>

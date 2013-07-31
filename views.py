@@ -24,10 +24,11 @@ def tvShowList(request):
     context = {'tvshow_list': shows,}
     return render(request, 'videos/tvShowList.html', context)
 
-def tvShowDetail(result, tvshow_id):
+def tvShowDetail(request, tvshow_id):
     show = get_object_or_404(TVShow, pk=tvshow_id)
-    episodes = Episode.objects.get(tvShow = show)
-    return render(request, 'videos/tvShowDetail.html', {'tvshow': show})
+    return render(request, 'videos/tvShowDetail.html', {'tvshow' : show})
 
-def episodeDetail(result, episode_id):
-    return HttpResponse("You are looking at the tv show episode %s." %episode_id)
+def episodeDetail(request, tvshow_id, episode_num):
+    episode = get_object_or_404(Episode, tvShow=tvshow_id, epNum=episode_num)
+    return render(request, 'videos/episodeDetail.html', {'episode' : episode})
+
