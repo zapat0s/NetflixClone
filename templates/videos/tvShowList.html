@@ -1,41 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>NetflixClone TV Shows</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Bootstrap -->
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
-		<style>
-			body {padding-top: 50px;}
-		</style>
-	</head>
-	<body>
-		<div class="navbar navbar-fixed-top">
-			<div class="container">
-				<a href="{% url 'videos:index' %}" class="navbar-brand">NetflixClone</a>
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="{% url 'videos:movieList' %}">Movies</a>
-					</li>
-					<li class="active">
-						<a href="{% url 'videos:tvShowList' %}">TV Shows</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="container">
-		{% if tvshow_list %}
-			<div class="row">
-			{% for tvshow in tvshow_list %}
-			<div class="col-sm-2"><a href="{% url 'videos:tvShowDetail' tvshow.id %}"><img height="300" width="187" src="{{ tvshow.cover }}"></a></div>
-			{% endfor %}
-			</div>
-		{% else %}
-			<p>No TV shows are available.</p>
-		{% endif %}
-	<!-- JavaScript plugins (requires jQuery) -->
-	<script src="http://code.jquery.com/jquery.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
-	</body>
-</html>
+{% extends "videos/base.html" %}
+
+{% block title %}TV Shows{% endblock %}
+
+{% block content %}
+{% if tvshow_list %}
+	<div class="row">
+	{% for tvshow in tvshow_list %}
+	<div class="col-sm-4 col-lg-3">
+		<a href="{% url 'videos:tvShowDetail' tvshow.id %}">
+			<img src="{{ tvshow.cover }}" class="img-thumbnail img-responsive">
+			<p class="lead text-center">{{ tvshow.title }}</p>
+		</a>
+	</div>
+	{% endfor %}
+	</div>
+{% else %}
+	<div class="jumbotron">
+		<p>Sorry, no TVShows are available.</p>
+	</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>NetflixClone {% block title %}{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
+		<link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet">
+		<style>
+			body {padding-top: 65px;}
+		</style>
+		<script src="http://vjs.zencdn.net/4.1/video.js"></script>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="container">
+				<a href="{% url 'videos:index' %}" class="navbar-brand">NetflixClone</a>
+				<ul class="nav navbar-nav">
+					{% if movie or movie_list %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="{% url 'videos:movieList' %}">Movies</a>
+					</li>
+					{% if tvshow or tvshow_list or episode %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="{% url 'videos:tvShowList' %}">TV Shows</a>
+					</li>
+				</ul>
+				{% if user.is_authenticated %}
+					<a href="{% url 'django.contrib.auth.views.logout' %}" class="btn btn-default navbar-btn pull-right">Sign out</a>
+				{% endif %}
+			</div>
+		</div>
+		<div class="container">
+			{% block content %}{% endblock %}
+		</div>
+	<!-- JavaScript plugins (requires jQuery) -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	</body>
+</html>

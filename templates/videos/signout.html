@@ -1,0 +1,10 @@
+{% extends "videos/base.html" %}
+
+{% block title %}Goodbye!{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+	Goodbye, click <a href="{% url 'django.contrib.auth.views.login' %}">here</a> to sign in again.
+</div>
+{% endblock %}
+
