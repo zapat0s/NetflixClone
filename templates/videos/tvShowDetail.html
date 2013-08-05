@@ -6,6 +6,19 @@
 <h1>{{ tvshow.title }} <small>{{ tvshow.startDate|date:"Y" }} - {{ tvshow.endDate|date:"Y" }}</small></h1>
 <div class="row">
 	<div class="col-12 col-sm-6 col-lg-6">
+		<div class="well">	
+			<div class="row">
+				<div class="col-lg-3">
+					<strong>Episodes:</strong>
+				</div>
+				<div class="col-lg-3">
+					<strong>Rated:</strong> {{ tvshow.rating }}
+				</div>
+				<div class="col-lg-6">
+						<strong>Genres:</strong> {% for genre in tvshow.genre.all %} <a href="{% url 'videos:tvShowGenre' genre.slug %}">{{ genre.name }}</a> {% endfor %}
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-12 col-lg-12">
 				<p>{{ tvshow.description }}</p>

@@ -6,8 +6,8 @@
 		<title>NetflixClone {% block title %}{% endblock %}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" media="screen">
-		<link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" media="screen">
+		<link href="{{ STATIC_URL }}css/video-js.min.css" rel="stylesheet">
 		<style>
 			body {padding-top: 65px;}
 			a.caret-before {
@@ -18,7 +18,7 @@
 			}
 
 		</style>
-		<script src="http://vjs.zencdn.net/4.1/video.js"></script>
+		<script src="{{ STATIC_URL }}js/video.js"></script>
 	</head>
 	<body>	
 		{% get_taglist as movie_genres for 'videos.Movie' %}
@@ -42,7 +42,7 @@
 						<a href="" class="dropdown-toggle caret-after" data-toggle="dropdown"><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li class="dropdown-header">
-								View by genre							
+								Filter by genre							
 							</li>
 							{% for genre in movie_genres%}
 							<li><a href="{% url 'videos:movieGenre' genre.slug %}">{{ genre.name }}</a>
@@ -64,7 +64,7 @@
 						<a href="" class="dropdown-toggle caret-after" data-toggle="dropdown"><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li class="dropdown-header">
-								View by genre							
+								Filter by genre							
 							</li>
 
 							{% for genre in tvshow_genres%}
@@ -83,9 +83,9 @@
 			{% block content %}{% endblock %}
 		</div>
 		<!-- JavaScript plugins (requires jQuery) -->
-		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="{{ STATIC_URL }}/js/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+		<script src="{{ STATIC_URL }}/js/bootstrap.min.js"></script>
 		<script type='text/javascript'>
 			$(document).ready(function () {
 				if ($("[data-toggle='tooltip']").length) {

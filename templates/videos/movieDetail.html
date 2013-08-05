@@ -18,12 +18,15 @@
 				<div class="col-lg-3">
 					<strong>Duration:</strong> {{ movie.video.duration|time:"H:i:s" }}
 				</div>
+				<div class="col-lg-2">
+					<strong>Rated:</strong> {{ movie.rating }}
+				</div>
 				<div class="col-lg-6">
-					<strong>Rating:</strong> {{ movie.rating }}
+					<strong>Genres:</strong> {% for genre in movie.genre.all %} <a href="{% url 'videos:movieGenre' genre.slug %}">{{ genre.name }}</a> {% endfor %}
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-9">
+				<div class="col-lg-12">
 					<strong>Release Date:</strong> {{ movie.date }}
 				</div>
 			</div>
