@@ -1,15 +1,14 @@
 {% extends "videos/base.html" %}
 
-{% block title %}{{ tvshow.title }}{% endblock %}
+{% block title %}Movies{% endblock %}
 
 {% block content %}
 {% if movie_list %}
 	<div class="row">
 	{% for movie in movie_list %}
-		<div class="col-sm-4 col-lg-3">
+		<div class="col-sm-3 col-lg-2">
 			<a href="{% url 'videos:movieDetail' movie.id %}">
-				<img src="{{ movie.cover }}" class="img-thumbnail img-responsive">
-				<p class="lead text-center">{{ movie.title }}</p>
+				<img src="{{ MEDIA_URL }}{{ movie.cover }}" class="img-thumbnail img-responsive" data-toggle="tooltip" data-placement="bottom" title="{{ movie.title }}">
 			</a>
 		</div>
 	{% endfor %}

@@ -11,6 +11,7 @@ from videos.models import TVShow
 from videos.models import Episode
 from videos.models import Video
 
+@login_required
 def index(request):
     movies = Movie.objects.order_by('title')
     shows = TVShow.objects.order_by('title')
@@ -20,7 +21,13 @@ def index(request):
 @login_required
 def movieList(request):
     movies = Movie.objects.order_by('title')
-    context = {'movie_list': movies,}
+    context = {'movie_list': movies}
+    return render(request, 'videos/movieList.html', context)
+
+@login_required
+def movieGenre(request, genre_slug):
+    movies = Movie.objects.filter(genre__slug=genre_slug)
+    context= {'movie_list':movies}
     return render(request, 'videos/movieList.html', context)
 
 @login_required
@@ -32,6 +39,12 @@ def movieDetail(request, movie_id):
 def tvShowList(request):
     shows = TVShow.objects.order_by('title')
     context = {'tvshow_list': shows,}
+    return render(request, 'videos/tvShowList.html', context)
+
+@login_required
+def tvShowGenre(request, genre_slug):
+    shows = TVShow.objects.filter(genre__slug=genre_slug)
+    context= {'tvshow_list':shows}
     return render(request, 'videos/tvShowList.html', context)
 
 @login_required

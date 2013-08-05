@@ -8,10 +8,20 @@
 		<link href="http://vjs.zencdn.net/4.1/video-js.css" rel="stylesheet">
 		<style>
 			body {padding-top: 65px;}
+			a.caret-before {
+				padding-right:1px !important;
+			}
+			a.caret-after {
+				padding-left:1px !important;
+			}
+
 		</style>
 		<script src="http://vjs.zencdn.net/4.1/video.js"></script>
 	</head>
 	<body>
+		{% load taggit_extras %}
+		{% get_taglist as movie_genres for 'videos.Movie' %}
+		{% get_taglist as tvshow_genres for 'videos.TVShow' %}
 		<div class="navbar navbar-fixed-top">
 			<div class="container">
 				<a href="{% url 'videos:index' %}" class="navbar-brand">NetflixClone</a>
@@ -21,15 +31,40 @@
 					{% else %}
 					<li>
 					{% endif %}
-						<a href="{% url 'videos:movieList' %}">Movies</a>
+						<a href="{% url 'videos:movieList' %}" class="caret-before">Movies</a>
+					</li>
+					{% if movie or movie_list %}
+					<li class="dropdown active">
+					{% else %}
+					<li class="dropdown">
+					{% endif %}
+						<a href="" class="dropdown-toggle caret-after" data-toggle="dropdown"><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							{% for genre in movie_genres%}
+							<li><a href="{% url 'videos:movieGenre' genre.slug %}">{{ genre.name }}</a>
+							{% endfor %}
+						</ul>
 					</li>
 					{% if tvshow or tvshow_list or episode %}
 					<li class="active">
 					{% else %}
 					<li>
 					{% endif %}
-						<a href="{% url 'videos:tvShowList' %}">TV Shows</a>
+						<a href="{% url 'videos:tvShowList' %}" class="caret-before">TV Shows</a>
 					</li>
+					{% if tvshow or tvshow_list %}
+					<li class="dropdown active">
+					{% else %}
+					<li class="dropdown">
+					{% endif %}
+						<a href="" class="dropdown-toggle caret-after" data-toggle="dropdown"><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							{% for genre in tvshow_genres%}
+							<li><a href="{% url 'videos:tvShowGenre' genre.slug %}">{{ genre.name }}</a>
+							{% endfor %}
+						</ul>
+					</li>
+
 				</ul>
 				{% if user.is_authenticated %}
 					<a href="{% url 'django.contrib.auth.views.logout' %}" class="btn btn-default navbar-btn pull-right">Sign out</a>
@@ -43,5 +78,11 @@
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	<script type='text/javascript'>
+		$(document).ready(function () {
+			if ($("[data-toggle='tooltip']").length) {
+				$("[data-toggle='tooltip']").tooltip();
+			}
+		});
 	</body>
 </html>

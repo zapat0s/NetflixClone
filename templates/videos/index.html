@@ -6,10 +6,9 @@
 {% if movie_list %}
 	<div class="row">
 	{% for movie in movie_list %}
-		<div class="col-sm-4 col-lg-3">
+		<div class="col-sm-3 col-lg-2">
 			<a href="{% url 'videos:movieDetail' movie.id %}">
 				<img src="{{ movie.cover }}" class="img-thumbnail img-responsive">
-				<p class="lead text-center">{{ movie.title }}</p>
 			</a>
 		</div>
 	{% endfor %}
@@ -22,12 +21,11 @@
 {% if tvshow_list %}
 	<div class="row">
 	{% for tvshow in tvshow_list %}
-	<div class="col-sm-4 col-lg-3">
-		<a href="{% url 'videos:tvShowDetail' tvshow.id %}">
-			<img src="{{ tvshow.cover }}" class="img-thumbnail img-responsive">
-			<p class="lead text-center">{{ tvshow.title }}</p>
-		</a>
-	</div>
+		<div class="col-sm-3 col-lg-2">
+			<a href="{% url 'videos:tvShowDetail' tvshow.id %}">
+				<img src="{{ tvshow.cover }}" class="img-thumbnail img-responsive">
+			</a>
+		</div>
 	{% endfor %}
 	</div>
 {% else %}
