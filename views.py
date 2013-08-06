@@ -10,6 +10,7 @@ from videos.models import Movie
 from videos.models import TVShow
 from videos.models import Episode
 from videos.models import Video
+from videos.models import Subtitle
 
 @login_required
 def index(request):

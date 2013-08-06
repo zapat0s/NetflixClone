@@ -19,9 +19,6 @@
 
 		</style>
 		<script src="{{ STATIC_URL }}js/video.js"></script>
-		<script type="text/javascript">
-			videojs.options.flash.swf = "{{ STATIC_URL }}video-js.swf"
-		</script>
 	</head>
 	<body>	
 		{% get_taglist as movie_genres for 'videos.Movie' %}

@@ -24,7 +24,7 @@ class Movie(models.Model):
     rating = models.CharField(max_length=16)
     genre = TaggableManager()
     description = models.TextField(blank=True)
-    poster = models.ImageField(upload_to='covers', max_length=512)
+    poster = models.ImageField(upload_to='posters', max_length=512)
     video = models.ForeignKey(Video)
     def __unicode__(self):
         return self.title
@@ -37,7 +37,7 @@ class TVShow(models.Model):
     rating = models.CharField(max_length=16)
     genre = TaggableManager()
     description = models.TextField(blank=True)
-    poster = models.ImageField(upload_to='covers', max_length=512)
+    poster = models.ImageField(upload_to='posters', max_length=512)
     def __unicode__(self):
         return self.title
 

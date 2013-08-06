@@ -9,7 +9,7 @@
 	{% for movie in movie_list %}
 		<div class="col-sm-3 col-lg-2">
 			<a href="{% url 'videos:movieDetail' movie.slug %}">
-				<img src="{{ movie.cover|thumbnail_url:'list_poster' }}" class="img-thumbnail img-responsive" data-toggle="tooltip" data-placement="bottom" title="{{ movie.title }}" >
+				<img src="{{ movie.poster|thumbnail_url:'list_poster' }}" class="img-thumbnail img-responsive" data-toggle="tooltip" data-placement="bottom" title="{{ movie.title }}" >
 			</a>
 		</div>
 	{% endfor %}
@@ -24,7 +24,7 @@
 	{% for tvshow in tvshow_list %}
 		<div class="col-sm-3 col-lg-2">
 			<a href="{% url 'videos:tvShowDetail' tvshow.slug %}">
-				<img src="{{ tvshow.cover|thumbnail_url:'list_poster' }}" class="img-thumbnail img-responsive" data-toggle="tooltip" data-placement="bottom" title="{{ tvshow.title }}" >
+				<img src="{{ tvshow.poster|thumbnail_url:'list_poster' }}" class="img-thumbnail img-responsive" data-toggle="tooltip" data-placement="bottom" title="{{ tvshow.title }}" >
 			</a>
 		</div>
 	{% endfor %}
