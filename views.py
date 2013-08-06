@@ -31,8 +31,8 @@ def movieGenre(request, genre_slug):
     return render(request, 'videos/movieList.html', context)
 
 @login_required
-def movieDetail(request, movie_id):
-    movie = get_object_or_404(Movie, pk=movie_id)
+def movieDetail(request, movie_slug):
+    movie = get_object_or_404(Movie, slug=movie_slug)
     return render(request, 'videos/movieDetail.html', {'movie': movie})
 
 @login_required
@@ -48,16 +48,22 @@ def tvShowGenre(request, genre_slug):
     return render(request, 'videos/tvShowList.html', context)
 
 @login_required
-def tvShowDetail(request, tvshow_id):
-    show = get_object_or_404(TVShow, pk=tvshow_id)
+def tvShowDetail(request, tvshow_slug):
+    show = get_object_or_404(TVShow, slug=tvshow_slug)
     return render(request, 'videos/tvShowDetail.html', {'tvshow' : show})
 
 @login_required
-def episodeDetail(request, tvshow_id, episode_num):
-    episode = get_object_or_404(Episode, tvShow=tvshow_id, epNum=episode_num)
+def episodeDetail(request, tvshow_slug, episode_num):
+    show = get_object_of_404(TVShow, slug=tvshow_slug)
+    episode = get_object_or_404(Episode, tvShow=show, epNum=episode_num)
     return render(request, 'videos/episodeDetail.html', {'episode' : episode})
 
 @login_required
 def sendVideo(request, video_id):
     video = get_object_or_404(Video, pk=video_id)
     return sendfile(request, video.path)
+
+@login_required
+def sendSubtitle(request, sub_id):
+    sub = get_object_or_404(Subtitle, pk=sub_id)
+    return sendfile(request, sub.path)

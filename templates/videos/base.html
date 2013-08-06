@@ -19,6 +19,9 @@
 
 		</style>
 		<script src="{{ STATIC_URL }}js/video.js"></script>
+		<script type="text/javascript">
+			videojs.options.flash.swf = "{{ STATIC_URL }}video-js.swf"
+		</script>
 	</head>
 	<body>	
 		{% get_taglist as movie_genres for 'videos.Movie' %}
@@ -83,9 +86,9 @@
 			{% block content %}{% endblock %}
 		</div>
 		<!-- JavaScript plugins (requires jQuery) -->
-		<script src="{{ STATIC_URL }}/js/jquery.min.js"></script>
+		<script src="{{ STATIC_URL }}js/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="{{ STATIC_URL }}/js/bootstrap.min.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 		<script type='text/javascript'>
 			$(document).ready(function () {
 				if ($("[data-toggle='tooltip']").length) {

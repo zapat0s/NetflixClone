@@ -6,7 +6,10 @@
 <div class="row">
 	<div class="col-lg-12">
 		<video class="video-js vjs-default-skin" controls preload="none" width="device-width" height="500" data-setup='{"example_option":true}'>
-			<source src="{% url 'videos:getVideo' movie.video.id %}" type='{{ movie.video.mimeType }}' />
+			<source src="{% url 'videos:sendVideo' movie.video.id %}" type='{{ movie.video.mimeType }}' />
+			{% for sub in movie.video.subtitles.all %}
+			<track kind="subtitle" src="{% url 'videos:sendSubtitle' sub.id %}" srclang="{{ sub.language }}" label="{{ sub.language }}" default>
+			{% endfor %}
 		</video>
 	</div>
 </div>
