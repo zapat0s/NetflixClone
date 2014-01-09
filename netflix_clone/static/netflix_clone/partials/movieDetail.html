@@ -1,0 +1,36 @@
+<h1>{{ item.title }}</h1>
+<div class="row">
+	<div class="col-sm-12 col-lg-8">
+		<div class="well">
+			<div class="row">
+				<div class="col-sm-3 col-lg-2">
+					<strong>Rated:</strong> {{ item.content_rating }}
+				</div>
+				<div class="col-sm-3 col-lg-3">
+					<strong>Released:</strong> {{ item.release_date }}
+				</div>
+				<div class="col-sm-6 col-lg-7">
+					<strong>Duration:</strong> {{ item.video.duration }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-lg-12">
+					<strong>Genres:</strong>
+                    <ul class="inline-list"> 
+                        <li ng-repeat="genre in item.genre_tags" class="inline-list">
+                            <a  href="#{{basePath }}/{{ genre }}">{{ genre }}</a>
+                        </li>
+                    </ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<p>{{ item.description }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<a href="/play/{{item.video.id}}/"><img src="{{ item.poster }}" class="img-thumbnail img-responsive"></a>
+	<div>
+</div>

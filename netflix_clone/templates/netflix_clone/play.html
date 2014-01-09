@@ -1,0 +1,97 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>NetflixClone Now Playing</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+	<!-- build:css(.tmp) styles/main.css -->
+	<link rel="stylesheet" href="/static/netflix_clone/lib/bootstrap/css/bootstrap.css">
+	<!-- endbuild -->
+</head>
+<body ng-app="play">
+	<!--[if lt IE 7]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+	 your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="bower_components/es5-shim/es5-shim.js"></script>
+	<script src="bower_components/json3/lib/json3.min.js"></script>
+	<![endif]-->
+
+	<div ng-controller="MainCtrl">
+        <videogular vg-theme="config.theme.url" vg-autoplay="config.autoPlay" vg-stretch="config.stretch.value"
+            vg-height="config.height", vg-width="config.width">
+            <video preload='metadata'>
+                <source src="{% url 'video' video.id %}" type="video/mp4">
+
+                {% for sub in video.subtitles.all %}
+                <track kind="subtitles" src="{% url 'subtitle' sub.id %}" srclang="en" label="English" default></track>
+                {% endfor %}
+            </video>
+
+            <vg-buffering></vg-buffering>
+            <vg-overlay-play vg-play-icon="config.theme.playIcon">
+            </vg-overlay-play>
+
+            <vg-controls vg-autohide="config.autoHide"
+                vg-autohide-time="config.autoHideTime"
+                style="height: 50px;">
+                <vg-play-pause-button
+                    vg-play-icon="config.theme.playIcon"
+                    vg-pause-icon="config.theme.pauseIcon">
+                </vg-play-pause-button>
+                {% verbatim %}
+                <vg-timeDisplay>{{ currentTime }}</vg-timeDisplay>
+                <vg-scrubBar>
+                <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+                </vg-scrubBar>
+                <vg-timeDisplay>{{ totalTime }}</vg-timeDisplay>
+                {% endverbatim %}
+                <vg-volume>
+                    <vg-mutebutton
+                        vg-volume-level-3-icon="config.theme.volumeLevel3Icon"
+                        vg-volume-level-2-icon="config.theme.volumeLevel2Icon"
+                        vg-volume-level-1-icon="config.theme.volumeLevel1Icon"
+                        vg-volume-level-0-icon="config.theme.volumeLevel0Icon"
+                        vg-mute-icon="config.theme.muteIcon">
+                    </vg-mutebutton>
+                    <vg-volumebar></vg-volumebar>
+                </vg-volume>
+                <vg-fullscreenButton
+                    vg-enter-full-screen-icon="config.theme.enterFullScreenIcon"
+                    vg-exit-full-screen-icon="config.theme.exitFullScreenIcon">
+                </vg-fullscreenButton>
+            </vg-controls>
+        </videogular>
+    </div>
+
+	<script src="/static/netflix_clone/lib/jquery/jquery-2.0.3.js"></script>
+	<script src="/static/netflix_clone/lib/angular/angular.js"></script>
+
+	<!-- build:js scripts/modules.js -->
+	<script src="/static/netflix_clone/lib/angular/angular-route.js"></script>
+	<script src="/static/netflix_clone/lib/angular/angular-sanitize.js"></script>
+	<!-- endbuild -->
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="/static/netflix_clone/js/play.js"></script>
+	<script src="/static/netflix_clone/js/play.controllers.js"></script>
+	<script src="/static/netflix_clone/lib/videogular/videogular.js"></script>
+	<script src="/static/netflix_clone/lib/videogular/plugins/controls.js"></script>
+	<script src="/static/netflix_clone/lib/videogular/plugins/overlay-play.js"></script>
+	<script src="/static/netflix_clone/lib/videogular/plugins/buffering.js"></script>
+	<!-- endbuild -->
+</body>
+</html>

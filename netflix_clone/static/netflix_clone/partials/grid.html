@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm-3 col-lg-2 animate"
+         ng-repeat="item in items |  filter:filterByGenre | filter:query | orderBy:'title'"
+         ng-animate="'animate'">
+        <a href="#{{ basePath }}/detail/{{item.id}}"
+            popover="{{item.description}}" popover-title="{{item.title}}"
+            popover-trigger="mouseenter" popover-placement="bottom">
+            <img src="{{ item.poster }}" class="img-thumbnail img-responsive"></img>
+        </a>
+    </div>
+</div>
