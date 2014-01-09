@@ -20,16 +20,3 @@ Dependencies
 
 NetflixClone can be installed without South however it is recommended to help
 with database migrations in future versions.
-
-
-Installation
-What follows is a full installation using Apache, PostgreSQL, and mod_wsgi. I
-have found that this combination works very well. Please feel free to add
-additional ways of setting up NetflixClone as you find them.
-
-Step 1: Setup PostgreSQL
-
-Step 2: Setup NetflixClone
-
-Step 3: Setup Apache
-
