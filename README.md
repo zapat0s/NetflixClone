@@ -20,3 +20,6 @@ Dependencies
 
 NetflixClone can be installed without South however it is recommended to help
 with database migrations in future versions.
+
+
+The video player uses [Videogular](http://www.videogular.com/) which has an MIT license.
